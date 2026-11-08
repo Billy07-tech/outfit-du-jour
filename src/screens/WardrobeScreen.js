@@ -18,6 +18,7 @@ import {
 import { effectiveRange } from '../recommend';
 import { syncNotifications } from '../sync';
 import OutfitEditor from './OutfitEditor';
+import BulkOutfitImport from './BulkOutfitImport';
 import PieceEditor from './PieceEditor';
 import StatsView from './StatsView';
 
@@ -176,8 +177,16 @@ export default function WardrobeScreen() {
             <Button
               title={tab === 'pieces' ? '＋ Ajouter une pièce' : '＋ Ajouter une tenue'}
               onPress={() => setEditor({ kind: tab === 'pieces' ? 'piece' : 'outfit' })}
-              style={{ marginBottom: 14 }}
+              style={{ marginBottom: tab === 'pieces' ? 14 : 8 }}
             />
+            {tab === 'outfits' && (
+              <Button
+                title="🖼️ Ajouter plusieurs tenues"
+                kind="ghost"
+                onPress={() => setEditor({ kind: 'bulk' })}
+                style={{ marginBottom: 14 }}
+              />
+            )}
             {tab === 'pieces' && (
               <Text style={[shared.muted, { marginBottom: 12 }]}>
                 Ajoute tes hauts, bas, chaussures et vestes séparément : l'app compose elle-même les tenues (il faut au moins un haut et un bas).
@@ -292,6 +301,15 @@ export default function WardrobeScreen() {
       <OutfitEditor
         visible={editor?.kind === 'outfit'}
         editing={editor?.kind === 'outfit' ? editor.item : null}
+        onClose={() => setEditor(null)}
+        onSaved={() => {
+          setEditor(null);
+          refresh();
+          syncNotifications();
+        }}
+      />
+      <BulkOutfitImport
+        visible={editor?.kind === 'bulk'}
         onClose={() => setEditor(null)}
         onSaved={() => {
           setEditor(null);
