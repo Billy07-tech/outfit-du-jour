@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Outfit du jour",
+    "slug": "outfit-du-jour",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.example.outfitdujour"
+    },
+    "android": {
+      "package": "com.example.outfitdujour"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Pour trouver la météo de ta ville automatiquement."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Pour ajouter tes tenues depuis ta galerie.",
+          "cameraPermission": "Pour photographier tes tenues."
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "color": "#C4552D"
+        }
+      ]
+    ],
+    "web": {
+      "bundler": "metro",
+      "output": "single"
+    }
+  }
+}

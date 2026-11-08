@@ -1,0 +1,19 @@
+# Dépendances et builds
+node_modules/
+.expo/
+dist/
+web-build/
+*.apk
+*.aab
+
+# Fichiers locaux et secrets
+.env
+.env.*
+*.pem
+*.key
+*.jks
+
+# Système
+.DS_Store
+Thumbs.db
+npm-debug.log*
